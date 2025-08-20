@@ -5,7 +5,7 @@
 			"name": "Dart & Flutter",
 			"request": "launch",
 			"type": "dart",
-			"program": "01_Dart/dartpad.dart"
+			"program": "DART101/tasks/homework1.dart"
 		}
 	]
 }
