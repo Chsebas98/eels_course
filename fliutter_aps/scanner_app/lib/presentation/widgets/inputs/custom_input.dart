@@ -9,6 +9,7 @@ class CustomInput extends StatelessWidget {
     this.textInputAction = TextInputAction.next,
     this.autofocus = false,
     this.cursorColor = Colors.indigoAccent,
+    this.maxLines = 1,
     this.onChanged,
     this.onSaved,
     this.validator,
@@ -25,6 +26,7 @@ class CustomInput extends StatelessWidget {
   final FormFieldSetter<String>? onSaved;
   final FormFieldValidator<String>? validator;
   final ValueChanged<String>? onSubmitted;
+  final int maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -37,16 +39,22 @@ class CustomInput extends StatelessWidget {
       onSaved: onSaved,
       onFieldSubmitted: onSubmitted,
       validator: validator,
+      maxLines: maxLines,
       decoration: InputDecoration(
         hint: Text(placeHolder),
         counterText: '',
-        border: OutlineInputBorder(),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
         floatingLabelAlignment: FloatingLabelAlignment.start,
+
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+          borderSide: BorderSide(color: Colors.black),
+        ),
         label: Text(
           label,
           style: TextStyle(
             fontWeight: FontWeight.w600,
-            color: Colors.indigo,
+            color: Colors.black,
             fontSize: 16,
           ),
         ),

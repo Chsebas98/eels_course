@@ -101,7 +101,11 @@ class _HomeStructure extends StatelessWidget {
                       isNetworkImage: isNetworkImage,
                       title: dataServices[index].title,
                       image: dataServices[index].image,
-                      action: () => Navigator.pushNamed(context, '/details'),
+                      action: () => Navigator.pushNamed(
+                        context,
+                        '/details',
+                        arguments: dataServices[index],
+                      ),
                     );
                   },
                 ),
