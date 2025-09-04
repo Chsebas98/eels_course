@@ -1,29 +1,25 @@
 import 'package:flutter/material.dart';
 
-class CustomButtonDefault extends StatelessWidget {
-  const CustomButtonDefault({
+class PrimaryButton extends StatelessWidget {
+  const PrimaryButton({
     super.key,
     this.action,
     required this.description,
-    this.colorButton = Colors.purple,
     required this.widthButton,
     required this.heightButton,
-    required this.hasIcon,
     required this.isDisabled,
+    // required this.hasIcon,
     this.icon,
-    this.colorText = Colors.white,
-    this.colorBorder = Colors.deepPurple,
   });
-
   final VoidCallback? action;
   final String description;
-  final Color colorText;
-  final Color colorButton;
-  final Color colorBorder;
+  // final Color colorText;
+  // final Color colorButton;
+  // final Color colorBorder;
   final double widthButton;
   final double heightButton;
   final bool isDisabled;
-  final bool hasIcon;
+  // final bool hasIcon;
   final Icon? icon;
 
   @override
@@ -31,15 +27,17 @@ class CustomButtonDefault extends StatelessWidget {
     return SizedBox(
       width: widthButton,
       height: heightButton,
+
       child: ElevatedButton(
         style: ButtonStyle(
+          elevation: WidgetStatePropertyAll(0),
           backgroundColor: WidgetStatePropertyAll(
-            isDisabled ? Colors.black45 : colorButton,
+            isDisabled ? Colors.black45 : Colors.deepPurple,
           ),
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50),
-              side: BorderSide(color: colorBorder),
+              side: BorderSide(color: Colors.deepPurpleAccent),
             ),
           ),
         ),
@@ -48,11 +46,11 @@ class CustomButtonDefault extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            if (hasIcon) icon!,
+            // if (hasIcon) icon!,
             Text(
               description,
               style: TextStyle(
-                color: isDisabled ? Colors.black54 : colorText,
+                color: isDisabled ? Colors.black54 : Colors.white,
                 fontSize: 16,
               ),
             ),

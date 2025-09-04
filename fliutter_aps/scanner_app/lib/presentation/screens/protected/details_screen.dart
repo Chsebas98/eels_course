@@ -165,12 +165,10 @@ class _DetailsStructureState extends State<_DetailsStructure> {
 
           // const SizedBox(height: 50),
           const Spacer(),
-          CustomButtonDefault(
+          PrimaryButton(
             description: 'Agendar Servicio',
             widthButton: double.infinity,
-            colorButton: Colors.deepPurple,
             heightButton: 40,
-            hasIcon: false,
             isDisabled: false,
             action: () => Navigator.pushNamed(
               context,

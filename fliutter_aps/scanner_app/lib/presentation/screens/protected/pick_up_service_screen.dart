@@ -145,13 +145,11 @@ class _PickUpStructureState extends State<_PickUpStructure> {
                   style: TextStyle(color: Colors.red, fontSize: 12),
                 ),
               const Spacer(),
-              CustomButtonDefault(
+              PrimaryButton(
                 description: 'Agendar Servicio',
                 widthButton: double.infinity,
                 heightButton: 40,
-                hasIcon: false,
                 isDisabled: false,
-                colorButton: Colors.deepPurple,
                 action: () {
                   if (_buyServiceFormKey.currentState!.validate() &&
                       _isChecked) {

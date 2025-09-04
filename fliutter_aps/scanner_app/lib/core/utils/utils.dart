@@ -1,2 +1,2 @@
-export 'package:scanner_app/core/utils/formValidators.dart';
+export 'package:scanner_app/core/utils/form_validators.dart';
 export './data.dart';

@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
               ModalRoute.of(context)!.settings.arguments as DataInterface;
           return PickUpServiceScreen(dataService: data);
         },
+        '/recupera-psw': (context) => RecuperaPasswordScreen(),
       },
     );
   }

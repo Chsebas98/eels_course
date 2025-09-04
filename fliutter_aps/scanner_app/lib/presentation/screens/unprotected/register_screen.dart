@@ -113,11 +113,10 @@ class _RegisterStructureState extends State<_RegisterStructure> {
               },
             ),
             SizedBox(height: 24),
-            CustomButtonDefault(
+            PrimaryButton(
               description: 'Registrarse',
               widthButton: double.infinity,
               heightButton: 40,
-              hasIcon: false,
               isDisabled: false,
               action: () {
                 if (_registerFormKey.currentState!.validate()) {
