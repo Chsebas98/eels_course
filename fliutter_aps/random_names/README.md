@@ -1,16 +1,12 @@
 # random_names
 
-A new Flutter project.
+Tarea 1 del curso
 
-## Getting Started
+## Instrucciones
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Cuando la app inicia, debe mostrar nombre: no-name
+- Cuando el usuario presiona el botón “Nombre aleatorio”, la UI se actualiza y muestra un nombre diferente
+- La app también incluye un contador, cuando el usuario presiona sobre el widget (+ 0), el contador aumenta.
+- El contador siempre inicia en 0.
+- Cuando el contador llega a 15, se debe reiniciar.
+- Cuando el contador es mayor que 10, el texto cambia a color rojo.
