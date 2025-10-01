@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:san_chat/presentation/theme/styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:san_chat/app/core/ui/ui.dart';
 
 class CustomInput extends StatelessWidget {
   const CustomInput({
@@ -19,17 +20,8 @@ class CustomInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      decoration: InputDecoration(
-        counterText: '',
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: AppColors.greyDivider),
-        ),
-        labelText: label,
-        labelStyle: TextStyle(
-          color: AppColors.green,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
+      decoration: InputDecoration(counterText: '', labelText: label),
+      style: TextStyle(fontSize: 14.sp),
       cursorColor: AppColors.grey,
       obscureText: isPsw,
       onChanged: onChanged,

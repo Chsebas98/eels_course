@@ -9,4 +9,5 @@ class AppColors {
   static const Color greenSoft = Color(0xFF58C3B6); //#58C3B6
   static const Color grey = Color(0xFF797C7B); //#797C7B
   static const Color greyDivider = Color(0xFFCDD1D0); //#CDD1D0
+  static const Color greyCircleBorder = Color(0xFFCDD1D0); //#CDD1D0
 }

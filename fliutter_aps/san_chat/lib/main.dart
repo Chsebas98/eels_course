@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:san_chat/presentation/screens/auth/login_screen.dart';
-import 'package:san_chat/presentation/screens/auth/signup_screen.dart';
-import 'package:san_chat/presentation/screens/onboarding_screen.dart';
+import 'package:san_chat/login/view/login_screen.dart';
+import 'package:san_chat/sign_up/view/signup_screen.dart';
+import 'package:san_chat/onboarding/onboarding_screen.dart';
+import 'package:san_chat/app/core/ui/app_navigator.dart';
+import 'package:san_chat/app/core/ui/theme.dart';
 
 void main() => runApp(const MyApp());
 
@@ -15,15 +17,16 @@ class MyApp extends StatelessWidget {
       designSize: Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (_, child) {
+      builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           initialRoute: '/',
           routes: {
-            '/': (_) => OnBoardingScreen(),
-            '/login': (_) => LoginScreen(),
-            '/signUp': (_) => SignUpScreen(),
+            AppNavigator.main: (context) => OnBoardingScreen(),
+            AppNavigator.login: (context) => LoginScreen(),
+            AppNavigator.signUp: (context) => SignUpScreen(),
           },
+          theme: AppTheme.light,
         );
       },
     );

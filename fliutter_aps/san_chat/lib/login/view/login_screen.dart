@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:san_chat/presentation/theme/styles.dart';
-import 'package:san_chat/presentation/widgets/buttons/custom_button.dart';
-import 'package:san_chat/presentation/widgets/input_default/custom_input.dart';
-import 'package:san_chat/presentation/widgets/social_network/custom_social_network.dart';
+import 'package:san_chat/app/core/ui/ui.dart';
+import 'package:san_chat/app/core/widgets/buttons/custom_button.dart';
+import 'package:san_chat/app/core/widgets/input_default/custom_input.dart';
+import 'package:san_chat/app/core/widgets/social_network/custom_social_network.dart';
 
 GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
@@ -112,17 +112,33 @@ class _LogInStructure extends StatelessWidget {
                 style: TextStyle(color: AppColors.grey, fontSize: 14.sp),
               ),
               30.verticalSpace,
-              CustomSocialNetwork(
-                isLightScreen: true,
-                actionFacebook: () {
-                  debugPrint('Login con Facebook');
-                },
-                actionGoogle: () {
-                  debugPrint('Login con Google');
-                },
-                actionApple: () {
-                  debugPrint('Login con Apple');
-                },
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomSocialNetwork(
+                    action: () {
+                      debugPrint('Login con Facebook');
+                    },
+                    imageSvg: AppDrawables.iconFacebook,
+                    colorBorder: Colors.black,
+                  ),
+                  20.horizontalSpace,
+                  CustomSocialNetwork(
+                    action: () {
+                      debugPrint('Login con Google');
+                    },
+                    imageSvg: AppDrawables.iconGoogle,
+                    colorBorder: Colors.black,
+                  ),
+                  20.horizontalSpace,
+                  CustomSocialNetwork(
+                    action: () {
+                      debugPrint('Login con Apple');
+                    },
+                    imageSvg: AppDrawables.iconAppleDark,
+                    colorBorder: Colors.black,
+                  ),
+                ],
               ),
               30.verticalSpace,
               Row(

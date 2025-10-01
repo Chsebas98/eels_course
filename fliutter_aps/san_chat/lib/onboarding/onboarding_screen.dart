@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:san_chat/presentation/theme/styles.dart';
-import 'package:san_chat/presentation/widgets/social_network/custom_social_network.dart';
+import 'package:san_chat/app/core/ui/ui.dart';
+import 'package:san_chat/app/core/widgets/social_network/custom_social_network.dart';
+import 'package:san_chat/utils/hepers.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
@@ -20,10 +21,11 @@ class _OnBoardingStructure extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final config = Helpers.getConfigDevice(MediaQuery.of(context).size.width);
     return Stack(
       children: [
         Image.asset(
-          'assets/images/onBoardingBackground.png',
+          AppDrawables.appBackground,
           width: double.infinity,
           fit: BoxFit.cover,
         ),
@@ -34,12 +36,18 @@ class _OnBoardingStructure extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(child: Image.asset('assets/png/iconApp.png')),
+                Center(
+                  child: Image.asset(
+                    AppDrawables.appIcon,
+                    width: 71.w,
+                    fit: BoxFit.cover,
+                  ),
+                ),
                 41.verticalSpace,
                 Text(
                   'Connect\nfriends\neasily &\nquickly',
                   style: TextStyle(
-                    fontSize: 60.sp,
+                    fontSize: config == ConfigDevice.tablet ? 40.sp : 58.sp,
                     fontWeight: FontWeight.w500,
                     color: Colors.white,
                   ),
@@ -48,50 +56,64 @@ class _OnBoardingStructure extends StatelessWidget {
                 Text(
                   'Our chat app is the perfect way to stay\nconnected with friends and family.',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     color: Color.fromRGBO(185, 193, 190, 1),
                   ),
                 ),
                 SizedBox(height: 38),
-                CustomSocialNetwork(
-                  actionFacebook: () {
-                    debugPrint('Login con Facebook');
-                  },
-                  actionGoogle: () {
-                    debugPrint('Login con Google');
-                  },
-                  actionApple: () {
-                    debugPrint('Login con Apple');
-                  },
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomSocialNetwork(
+                      action: () {
+                        debugPrint('Login con Facebook');
+                      },
+                      imageSvg: AppDrawables.iconFacebook,
+                    ),
+                    20.horizontalSpace,
+                    CustomSocialNetwork(
+                      action: () {
+                        debugPrint('Login con Google');
+                      },
+                      imageSvg: AppDrawables.iconGoogle,
+                    ),
+                    20.horizontalSpace,
+                    CustomSocialNetwork(
+                      action: () {
+                        debugPrint('Login con Apple');
+                      },
+                      imageSvg: AppDrawables.iconApple,
+                    ),
+                  ],
                 ),
-                SizedBox(height: 30),
+                30.verticalSpace,
                 Row(
                   children: [
                     Expanded(child: Divider(color: AppColors.greyDivider)),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      padding: EdgeInsets.symmetric(horizontal: 15.w),
                       child: Text(
                         'OR',
-                        style: TextStyle(color: Colors.white, fontSize: 14),
+                        style: TextStyle(color: Colors.white, fontSize: 14.sp),
                       ),
                     ),
                     Expanded(child: Divider(color: AppColors.greyDivider)),
                   ],
                 ),
-                SizedBox(height: 30),
+                30.verticalSpace,
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/signUp');
+                      Navigator.pushNamed(context, AppNavigator.signUp);
                     },
                     style: ElevatedButton.styleFrom(
                       textStyle: TextStyle(
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w500,
                       ),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadiusGeometry.circular(16),
+                        borderRadius: BorderRadiusGeometry.circular(16.r),
                       ),
                       backgroundColor: Colors.white,
                       foregroundColor: Colors.black,
@@ -99,18 +121,18 @@ class _OnBoardingStructure extends StatelessWidget {
                     child: Text('Sign up with mail'),
                   ),
                 ),
-                SizedBox(height: 46),
+                const Spacer(),
                 Center(
                   child: TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/login');
+                      Navigator.pushNamed(context, AppNavigator.login);
                     },
                     style: FilledButton.styleFrom(overlayColor: Colors.grey),
                     child: RichText(
                       text: TextSpan(
                         style: TextStyle(
                           color: Colors.grey,
-                          fontSize: 14,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.w400,
                         ),
                         children: [
