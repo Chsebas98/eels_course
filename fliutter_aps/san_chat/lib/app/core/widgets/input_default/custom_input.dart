@@ -20,6 +20,7 @@ class CustomInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(counterText: '', labelText: label),
       style: TextStyle(fontSize: 14.sp),
       cursorColor: AppColors.grey,

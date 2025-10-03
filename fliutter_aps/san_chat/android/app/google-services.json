@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "157913340697",
+    "project_id": "sanchat-f562b",
+    "storage_bucket": "sanchat-f562b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157913340697:android:8ad4d9ef9e5f46d2004388",
+        "android_client_info": {
+          "package_name": "com.example.san_chat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjDP_dMhR0bh75QvbDeKTOBMzA6b9xOY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157913340697:android:873eff421dbac45a004388",
+        "android_client_info": {
+          "package_name": "com.securitydata.ejemplorubricaimplement"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjDP_dMhR0bh75QvbDeKTOBMzA6b9xOY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
