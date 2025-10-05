@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:san_chat/app/core/ui/ui.dart';
 import 'package:san_chat/app/core/widgets/social_network/custom_social_network.dart';
-import 'package:san_chat/utils/hepers.dart';
+import 'package:san_chat/utils/helpers.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});

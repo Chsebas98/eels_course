@@ -4,8 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:san_chat/app/core/ui/ui.dart';
 import 'package:san_chat/app/core/widgets/buttons/custom_button.dart';
 import 'package:san_chat/app/core/widgets/input_default/custom_input.dart';
-import 'package:san_chat/data/repositories/auth_repositories/auth_repository_firebase_impl.dart';
-import 'package:san_chat/login/cubit/login_cubit.dart';
 import 'package:san_chat/sign_up/cubit/sign_up_cubit.dart';
 
 GlobalKey<FormState> signUpKey = GlobalKey<FormState>();

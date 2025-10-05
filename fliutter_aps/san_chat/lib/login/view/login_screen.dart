@@ -63,7 +63,12 @@ class _LogInStructure extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginCubit, LoginState>(
+    return BlocConsumer<LoginCubit, LoginState>(
+      listener: (context, state) {
+        if (state.isAuth) {
+          Navigator.pushNamed(context, '/home');
+        }
+      },
       builder: (context, state) {
         return SingleChildScrollView(
           physics: AlwaysScrollableScrollPhysics(),
