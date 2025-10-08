@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:san_chat/app/core/models/models.dart';
 import 'package:san_chat/app/core/ui/ui.dart';
 import 'package:san_chat/app/core/widgets/buttons/custom_button.dart';
 import 'package:san_chat/app/core/widgets/input_default/custom_input.dart';
+import 'package:san_chat/app/core/widgets/snackbar/custom_snackbar.dart';
+import 'package:san_chat/main.dart';
 import 'package:san_chat/sign_up/cubit/sign_up_cubit.dart';
 
 GlobalKey<FormState> signUpKey = GlobalKey<FormState>();
@@ -26,9 +29,59 @@ class SignUpScreen extends StatelessWidget {
             icon: Icon(Icons.arrow_back_ios_new_rounded),
           ),
         ),
-        body: _SignUpStructure(),
+        body: _SignUpController(),
         bottomNavigationBar: _SignUpButton(),
       ),
+    );
+  }
+}
+
+class _SignUpController extends StatefulWidget {
+  const _SignUpController();
+
+  @override
+  State<_SignUpController> createState() => _SignUpControllerState();
+}
+
+class _SignUpControllerState extends State<_SignUpController> {
+  bool isToastOpen = false;
+  @override
+  void dispose() {
+    rootScaffoldState.currentState?.hideCurrentSnackBar();
+    super.dispose();
+  }
+
+  void _showToast(BuildContext context) {
+    final state = context.read<SignUpCubit>().state;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      rootScaffoldState.currentState!.showSnackBar(
+        CustomSnackbar(
+          toastType: state.formSignUpStatus == Status.success
+              ? ToastType.succes
+              : ToastType.error,
+          toastInfo: state.showSnackbar,
+          actionClosed: () {
+            // setState(() {
+            isToastOpen = false;
+            // });
+            rootScaffoldState.currentState!.hideCurrentSnackBar;
+          },
+        ),
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<SignUpCubit, SignUpState>(
+      listener: (context, state) {
+        debugPrint(state.showSnackbar.showToast.toString());
+        if (state.showSnackbar.showToast && !isToastOpen) {
+          isToastOpen = true;
+          _showToast(context);
+        }
+      },
+      child: _SignUpStructure(),
     );
   }
 }
@@ -38,21 +91,27 @@ class _SignUpButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.w),
-        child: SizedBox(
-          height: 48.h,
-          child: CustomButton(
-            action: () {
-              if (signUpKey.currentState!.validate()) {
-                context.read<SignUpCubit>().createAccount();
-              }
-            },
-            desc: 'Create an account',
+    return BlocBuilder<SignUpCubit, SignUpState>(
+      builder: (context, state) {
+        return SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
+            child: SizedBox(
+              height: 48.h,
+              child: state.formSignUpStatus == Status.loading
+                  ? Center(child: CircularProgressIndicator())
+                  : CustomButton(
+                      action: () {
+                        if (signUpKey.currentState!.validate()) {
+                          context.read<SignUpCubit>().createAccount();
+                        }
+                      },
+                      desc: 'Create an account',
+                    ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
@@ -129,7 +188,7 @@ class _SignUpStructureState extends State<_SignUpStructure> {
                     CustomInput(
                       label: 'Your name',
                       onChanged: (value) {
-                        debugPrint(value);
+                        // debugPrint(value);
                         context.read<SignUpCubit>().onNameChanged(value);
                       },
                       validator: (value) {
@@ -141,7 +200,7 @@ class _SignUpStructureState extends State<_SignUpStructure> {
                     CustomInput(
                       label: 'Your email',
                       onChanged: (value) {
-                        debugPrint(value);
+                        // debugPrint(value);
                         context.read<SignUpCubit>().onMailChanged(value);
                       },
                       validator: (value) {
@@ -153,7 +212,7 @@ class _SignUpStructureState extends State<_SignUpStructure> {
                     CustomInput(
                       label: 'Password',
                       onChanged: (value) {
-                        debugPrint(value);
+                        // debugPrint(value);
                         context.read<SignUpCubit>().onPasswordChanged(value);
                       },
                       validator: (value) {
@@ -166,7 +225,7 @@ class _SignUpStructureState extends State<_SignUpStructure> {
                     CustomInput(
                       label: 'Confirm Password',
                       onChanged: (value) {
-                        debugPrint(value);
+                        // debugPrint(value);
                         context.read<SignUpCubit>().onConfirmPasswordChanged(
                           value,
                         );

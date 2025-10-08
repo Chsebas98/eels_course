@@ -11,6 +11,8 @@ import 'package:san_chat/onboarding/onboarding_screen.dart';
 import 'package:san_chat/app/core/ui/app_navigator.dart';
 import 'package:san_chat/app/core/ui/theme.dart';
 
+final rootScaffoldState = GlobalKey<ScaffoldMessengerState>();
+
 late final FirebaseApp app;
 late final FirebaseAuth auth;
 void main() async {
@@ -36,6 +38,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           initialRoute: '/',
+          scaffoldMessengerKey: rootScaffoldState,
           routes: {
             AppNavigator.main: (context) => OnBoardingScreen(),
             AppNavigator.login: (context) => LoginScreen(),
