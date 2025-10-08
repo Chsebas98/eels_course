@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:san_chat/firebase_options.dart';
 import 'package:san_chat/home/view/account_screen.dart';
 import 'package:san_chat/home/view/home_screen.dart';
@@ -17,6 +18,7 @@ late final FirebaseApp app;
 late final FirebaseAuth auth;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await GoogleSignIn.instance.initialize();
   app = await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

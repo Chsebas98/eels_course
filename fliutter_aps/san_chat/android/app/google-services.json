@@ -12,7 +12,20 @@
           "package_name": "com.example.san_chat"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "157913340697-lmaviqefq7kcqgbkvoma022qslkb31e3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.san_chat",
+            "certificate_hash": "1f82a8e5660d5793318c6d51b260306e344374a3"
+          }
+        },
+        {
+          "client_id": "157913340697-hvjkjfss3av1au37vff6044mdkl7tcrn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBjDP_dMhR0bh75QvbDeKTOBMzA6b9xOY4"
@@ -20,26 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:157913340697:android:873eff421dbac45a004388",
-        "android_client_info": {
-          "package_name": "com.securitydata.ejemplorubricaimplement"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBjDP_dMhR0bh75QvbDeKTOBMzA6b9xOY4"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "157913340697-hvjkjfss3av1au37vff6044mdkl7tcrn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "157913340697-h6nk7oeh22t8uq65bfsp90bbg0cjtaa2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sanChat"
+              }
+            }
+          ]
         }
       }
     }

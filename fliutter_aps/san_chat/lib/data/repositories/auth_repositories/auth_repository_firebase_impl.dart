@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:san_chat/data/repositories/auth_repositories/auth_repository.dart';
 
 class AuthRepositoryFirebaseImpl extends AuthRepository {
@@ -32,6 +33,21 @@ class AuthRepositoryFirebaseImpl extends AuthRepository {
       debugPrint('signOut unexpected error: $e');
       rethrow;
     }
+  }
+
+  @override
+  Future<void> sigInWithGoogle() async {
+    final GoogleSignInAccount googleUser = await GoogleSignIn.instance
+        .authenticate();
+
+    final GoogleSignInAuthentication googleAuth = googleUser.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      idToken: googleAuth.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
   Exception _mapFirebaseErrorToReadable(
@@ -67,4 +83,7 @@ class AuthRepositoryFirebaseImpl extends AuthRepository {
         );
     }
   }
+
+  @override
+  Stream<User?> get currentUser => FirebaseAuth.instance.authStateChanges();
 }

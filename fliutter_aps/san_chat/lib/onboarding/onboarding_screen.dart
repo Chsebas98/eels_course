@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:san_chat/app/core/models/models.dart';
 import 'package:san_chat/app/core/ui/ui.dart';
+import 'package:san_chat/app/core/widgets/snackbar/custom_snackbar.dart';
 import 'package:san_chat/app/core/widgets/social_network/custom_social_network.dart';
+import 'package:san_chat/main.dart';
+import 'package:san_chat/onboarding/cubit/onboarding_cubit.dart';
 import 'package:san_chat/utils/helpers.dart';
 
 class OnBoardingScreen extends StatelessWidget {
@@ -9,9 +14,53 @@ class OnBoardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: _OnBoardingStructure(),
+    return BlocProvider(
+      create: (context) => OnboardingCubit(),
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        body: _OnBoardingController(),
+      ),
+    );
+  }
+}
+
+class _OnBoardingController extends StatefulWidget {
+  const _OnBoardingController();
+
+  @override
+  State<_OnBoardingController> createState() => _OnBoardingControllerState();
+}
+
+class _OnBoardingControllerState extends State<_OnBoardingController> {
+  @override
+  void dispose() {
+    rootScaffoldState.currentState?.hideCurrentSnackBar();
+    super.dispose();
+  }
+
+  void _showSnackbar() {
+    rootScaffoldState.currentState?.showSnackBar(
+      CustomSnackbar(
+        actionClosed: () =>
+            rootScaffoldState.currentState?.hideCurrentSnackBar(),
+        toastType: ToastType.error,
+        toastInfo: ToastInterface(
+          title: 'Error al iniciar sesión con Google',
+          description: 'Ha ocurrido un error al iniciar sesion con Google',
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<OnboardingCubit, Status>(
+      listener: (context, state) {
+        if (state == Status.error) {
+          _showSnackbar();
+        }
+      },
+      child: _OnBoardingStructure(),
     );
   }
 }
@@ -74,6 +123,7 @@ class _OnBoardingStructure extends StatelessWidget {
                     CustomSocialNetwork(
                       action: () {
                         debugPrint('Login con Google');
+                        context.read<OnboardingCubit>().signInWithGoogle();
                       },
                       imageSvg: AppDrawables.iconGoogle,
                     ),
