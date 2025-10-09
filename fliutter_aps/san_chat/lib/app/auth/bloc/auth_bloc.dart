@@ -12,6 +12,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   AuthBloc() : super(AuthStateLoading()) {
     on<CheckUserLoggedEvent>(_onCheckUserLoggedEvent);
+
+    // add(CheckUserLoggedEvent());
   }
   FutureOr<void> _onCheckUserLoggedEvent(
     CheckUserLoggedEvent event,
