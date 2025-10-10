@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:san_chat/app/auth/bloc/view/auth_handler.dart';
 import 'package:san_chat/firebase_options.dart';
-import 'package:san_chat/home/cubit/home_cubit.dart';
+import 'package:san_chat/home/bloc/home_bloc.dart';
 import 'package:san_chat/home/view/account_screen.dart';
 import 'package:san_chat/home/view/home_screen.dart';
 import 'package:san_chat/login/view/login_screen.dart';
@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
                   nameUser = args['nameUser'] as String;
                 }
                 return BlocProvider(
-                  create: (context) => HomeCubit(),
+                  create: (context) => HomeBloc(),
                   child: AccountScreen(nameUser: nameUser),
                 );
               },

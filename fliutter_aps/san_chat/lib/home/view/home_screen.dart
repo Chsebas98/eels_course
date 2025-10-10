@@ -1,12 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:san_chat/app/core/ui/ui.dart';
 import 'package:san_chat/app/core/widgets/social_network/custom_social_network.dart';
+import 'package:san_chat/home/bloc/home_bloc.dart';
 import 'package:san_chat/home/widgets/card_container.dart';
 import 'package:san_chat/home/widgets/contact_status.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => HomeBloc()..add(GetContactsEvent()),
+      child: _HomeInitial(),
+    );
+  }
+}
+
+class _HomeInitial extends StatelessWidget {
+  const _HomeInitial();
 
   @override
   Widget build(BuildContext context) {
@@ -38,41 +52,6 @@ class HomeScreen extends StatelessWidget {
       bottomNavigationBar: SizedBox.shrink(),
       child: [_HomeScreenController()],
     );
-    // return Scaffold(
-    //   backgroundColor: AppColors.black2,
-    //   appBar: AppBar(
-    //     backgroundColor: AppColors.black2,
-    //     leading: CustomSocialNetwork(
-    //       action: () {
-    //         debugPrint('Search');
-    //       },
-    //       imageSvg: 'assets/svg/iconSearch.svg',
-    //     ),
-    //     title: Text('Home'),
-    //     centerTitle: true,
-    //     titleTextStyle: TextStyle(color: AppColors.white, fontSize: 20.sp),
-    //     actions: [
-    //       GestureDetector(
-    //         onTap: () {
-    //           Navigator.pushNamed(
-    //             context,
-    //             AppNavigator.account,
-    //             arguments: 'Sebastian Soberon',
-    //           );
-    //         },
-    //         child: Image.asset('assets/svg/avatarUser.png', width: 44.w),
-    //       ),
-    //     ],
-    //   ),
-    //   body: _HomeScreenController(),
-    //   bottomNavigationBar: Container(
-    //     color: AppColors.white,
-    //     padding: EdgeInsets.symmetric(horizontal: 24.w),
-    //     child: SafeArea(
-    //       child: ElevatedButton(onPressed: () {}, child: Text('data')),
-    //     ),
-    //   ),
-    // );
   }
 }
 
@@ -95,24 +74,37 @@ class _HomeScreenStructure extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'My Contact',
-          style: TextStyle(
-            fontSize: 16.sp,
-            color: AppColors.black1,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        20.verticalSpace,
-        ContactStatus(nameUser: 'Alvaro Armijos'),
-        20.verticalSpace,
-        ContactStatus(nameUser: 'Sebastian Soberon'),
-        20.verticalSpace,
-        ContactStatus(nameUser: 'Cathy', status: true),
-      ],
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'My Contact',
+              style: TextStyle(
+                fontSize: 16.sp,
+                color: AppColors.black1,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            20.verticalSpace,
+            ...state.listaContactos.map((e) {
+              return Column(
+                children: [
+                  ContactStatus(nameUser: e.name, status: e.status),
+                  20.verticalSpace,
+                ],
+              );
+            }),
+
+            // ContactStatus(nameUser: 'Alvaro Armijos'),
+            // 20.verticalSpace,
+            // ContactStatus(nameUser: 'Sebastian Soberon'),
+            // 20.verticalSpace,
+            // ContactStatus(nameUser: 'Cathy', status: true),
+          ],
+        );
+      },
     );
   }
 }

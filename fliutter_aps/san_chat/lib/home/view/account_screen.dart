@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:san_chat/app/core/ui/ui.dart';
-import 'package:san_chat/home/cubit/home_cubit.dart';
+import 'package:san_chat/home/bloc/home_bloc.dart';
 import 'package:san_chat/home/widgets/card_container.dart';
 import 'package:san_chat/home/widgets/info_account.dart';
 import 'package:san_chat/utils/helpers.dart';
@@ -31,7 +31,7 @@ class AccountScreen extends StatelessWidget {
         child: SafeArea(
           child: ElevatedButton(
             onPressed: () {
-              context.read<HomeCubit>().logoutEvent();
+              context.read<HomeBloc>().add(LogoutEvent());
             },
             child: Text('Log Out'),
           ),
