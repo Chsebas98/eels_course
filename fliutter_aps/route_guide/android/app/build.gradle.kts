@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.route_guide"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 35
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
