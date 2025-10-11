@@ -10,6 +10,11 @@ import 'package:route_guide/packages/data/account/infraestructure/user_mapper.da
 import 'package:route_guide/packages/features/onboarding/bloc/on_boarding_bloc.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
+// Se crea un Singleton con GetIt para asegurarnos que exista una única instancia de
+// una clase en toda la app y que todos los componentes/widgets/blocs accedan a esa misma instancia
+// En conclusion evita crear el mismo objeto muchas veces (ahorras memoria/configuración).
+// Recursos que pueden ser compartidos: Prefs, Logger, ApiClient, Theme, Database.
+
 final serviceLocator = GetIt.instance;
 
 Future<void> init() async {
