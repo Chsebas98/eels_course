@@ -8,11 +8,11 @@ class AppRouterGuard {
 
   //evita que se regrese hacia atras
   static void goToInformationPage(BuildContext context) {
-    context.go(OnBoardingRoutes.infoFull);
+    context.go(AppRoutes.infoFull);
   }
 
   //apilando las pantallas
   static void pushToInformationPage(BuildContext context) {
-    context.push(OnBoardingRoutes.infoFull);
+    context.push(AppRoutes.infoFull);
   }
 }

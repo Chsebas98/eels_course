@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:route_guide/core/app/bloc/app_bloc.dart';
+import 'package:route_guide/core/app/handlers/cubit/permission_cubit.dart';
 import 'package:route_guide/packages/core/utils/utils.dart';
 import 'package:route_guide/packages/data/account/app/check_user_exists.dart';
 import 'package:route_guide/packages/data/account/app/get_current_user.dart';
@@ -21,6 +22,7 @@ Future<void> init() async {
   //?App
   //*
   serviceLocator.registerFactory(() => AppBloc(serviceLocator()));
+  serviceLocator.registerFactory(() => PermissionCubit());
   //?Core
   //*Utility
   serviceLocator.registerFactory(() => InputConverter());

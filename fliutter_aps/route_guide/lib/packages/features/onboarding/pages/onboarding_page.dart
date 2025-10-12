@@ -24,7 +24,7 @@ class OnBoardingPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             ElevatedButton(
-              onPressed: () => context.go(OnBoardingRoutes.infoFull),
+              onPressed: () => context.go(AppRoutes.infoFull),
               child: const Text('Empezar'),
             ),
           ],

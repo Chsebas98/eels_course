@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:route_guide/packages/data/account/app/check_user_exists.dart';
 
@@ -17,10 +18,13 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   FutureOr<void> _onCheckExistUserEvent(
     CheckExistUserEvent event,
     Emitter<AppState> emit,
-  ) {
+  ) async {
     return emit.forEach(
       _checkUserExists(),
-      onData: (data) => state.copyWith(userExists: data),
+      onData: (data) {
+        debugPrint("RES: $data");
+        return state.copyWith(userExists: data);
+      },
     );
   }
 }
