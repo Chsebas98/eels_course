@@ -23,7 +23,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       _checkUserExists(),
       onData: (data) {
         debugPrint("RES: $data");
-        return state.copyWith(userExists: data);
+        return state.copyWith(userExists: data, loading: false);
       },
     );
   }

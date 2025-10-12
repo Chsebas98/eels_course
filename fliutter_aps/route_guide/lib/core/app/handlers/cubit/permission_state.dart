@@ -4,17 +4,17 @@ class PermissionState extends Equatable {
   final PermissionStatus ubicacion;
   final PermissionStatus ubicacionAlways;
   final PermissionStatus ubicacionWhenInUse;
-  final PermissionStatus archivos;
+  final bool checking;
 
   const PermissionState({
     this.ubicacionAlways = PermissionStatus.denied,
     this.ubicacionWhenInUse = PermissionStatus.denied,
     this.ubicacion = PermissionStatus.denied,
-    this.archivos = PermissionStatus.denied,
+
+    this.checking = true,
   });
 
   bool get ubicacionGranted => ubicacion == PermissionStatus.granted;
-  bool get archivosGranted => archivos == PermissionStatus.granted;
   bool get ubicacionAlwaysGranted =>
       ubicacionAlways == PermissionStatus.granted;
   bool get ubicacionWhenInUseGranted =>
@@ -24,21 +24,17 @@ class PermissionState extends Equatable {
     PermissionStatus? ubicacion,
     PermissionStatus? ubicacionAlways,
     PermissionStatus? ubicacionWhenInUse,
-    PermissionStatus? archivos,
+
+    bool? checking,
   }) {
     return PermissionState(
       ubicacion: ubicacion ?? this.ubicacion,
       ubicacionAlways: ubicacionAlways ?? this.ubicacionAlways,
       ubicacionWhenInUse: ubicacionWhenInUse ?? this.ubicacionWhenInUse,
-      archivos: archivos ?? this.archivos,
+      checking: checking ?? this.checking,
     );
   }
 
   @override
-  List<Object> get props => [
-    ubicacion,
-    archivos,
-    ubicacionAlways,
-    ubicacionWhenInUse,
-  ];
+  List<Object> get props => [ubicacion, ubicacionAlways, ubicacionWhenInUse];
 }

@@ -40,6 +40,7 @@ class PermissionCubit extends Cubit<PermissionState>
         ubicacion: statuses[0],
         ubicacionAlways: statuses[1],
         ubicacionWhenInUse: statuses[2],
+        checking: false,
       ),
     );
   }
