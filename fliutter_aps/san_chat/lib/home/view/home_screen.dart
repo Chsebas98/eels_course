@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:san_chat/app/auth/bloc/auth_bloc.dart';
 import 'package:san_chat/app/core/ui/ui.dart';
 import 'package:san_chat/app/core/widgets/social_network/custom_social_network.dart';
 import 'package:san_chat/home/bloc/home_bloc.dart';
@@ -64,6 +65,12 @@ class _HomeScreenController extends StatefulWidget {
 
 class _HomeScreenControllerState extends State<_HomeScreenController> {
   @override
+  void initState() {
+    super.initState();
+    context.read<HomeBloc>().add(UpdateContactsEvent(status: true));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return _HomeScreenStructure();
   }
@@ -74,6 +81,8 @@ class _HomeScreenStructure extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authState = context.read<AuthBloc>().state;
+    final user = authState is AuthStateLoggedIn ? authState.user : null;
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         return Column(

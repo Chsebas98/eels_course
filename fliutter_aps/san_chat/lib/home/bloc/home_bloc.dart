@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:san_chat/data/domain/models/contact_model.dart';
 import 'package:san_chat/data/repositories/auth_repositories/auth_repository_firebase_impl.dart';
@@ -15,6 +14,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   HomeBloc() : super(HomeState()) {
     on<GetContactsEvent>(_onGetContactsEvent);
+    on<UpdateContactsEvent>(_onUpdateContactsEvent);
     on<LogoutEvent>(_onLogoutEvent);
   }
 
@@ -35,6 +35,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     LogoutEvent event,
     Emitter<HomeState> emit,
   ) async {
+    final user = await _authRepositoryFirebaseImpl.currentUser.first;
+    if (user == null) return;
+    _contactRepository.updateUserStatus(user, false);
+
     await _authRepositoryFirebaseImpl.logOut();
+  }
+
+  FutureOr<void> _onUpdateContactsEvent(
+    UpdateContactsEvent event,
+    Emitter<HomeState> emit,
+  ) async {
+    final user = await _authRepositoryFirebaseImpl.currentUser.first;
+    if (user == null) return;
+    _contactRepository.updateUserStatus(user, event.status);
   }
 }
