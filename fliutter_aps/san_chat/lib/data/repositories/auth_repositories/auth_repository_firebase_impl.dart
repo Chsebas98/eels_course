@@ -44,4 +44,7 @@ class AuthRepositoryFirebaseImpl extends AuthRepository {
   Future<void> logOut() {
     return Future.wait([GoogleSignIn.instance.signOut(), _auth.signOut()]);
   }
+
+  @override
+  Future<User?> get user => currentUser.first;
 }

@@ -42,6 +42,11 @@ dependencies:
  auto_size_text: ^3.0.0
  google_sign_in: ^7.2.0
  firebase_database: ^12.0.2
+ get_it: ^8.2.0
+ intl: ^0.20.2
+ avatars: ^3.0.2
+ flutter_local_notifications: ^19.4.2
+ fluttertoast: ^9.0.0
 
 dev_dependencies:
  flutter_test:

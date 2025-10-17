@@ -12,6 +12,7 @@ class ContactsRepositoryImpl extends ContactsRepository {
 
       return value?.values.map((element) {
             return Contact(
+              id: element['id'],
               name: element['name'],
               photo: element['photo'],
               status: element['status'],

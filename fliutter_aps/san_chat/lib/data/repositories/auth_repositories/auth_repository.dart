@@ -5,9 +5,11 @@ abstract class AuthRepository {
 
   //metodo para login
   Future<UserCredential?> login(String email, String password);
-  Future<void> sigInWithGoogle();
   //metodo para google
-  //metodo para Facebook
+  Future<void> sigInWithGoogle();
+
+  // Usuario actual
+  Future<User?> get user;
 
   //cerrar sesion
   Future<void> logOut();

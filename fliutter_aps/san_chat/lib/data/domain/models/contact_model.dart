@@ -5,11 +5,12 @@ Contact contactFromJson(String str) => Contact.fromJson(json.decode(str));
 String contactToJson(Contact data) => json.encode(data.toJson());
 
 class Contact {
+  final String? id;
   final String name;
   final String? photo;
   final bool status;
 
-  Contact({required this.name, this.photo, required this.status});
+  Contact({this.id, required this.name, this.photo, required this.status});
 
   factory Contact.fromJson(Map<String, dynamic> json) =>
       Contact(name: json["name"], photo: json["photo"], status: json["status"]);
