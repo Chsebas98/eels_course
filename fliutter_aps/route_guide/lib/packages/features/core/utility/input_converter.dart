@@ -1,3 +1,5 @@
+import 'package:route_guide/packages/data/account/domain/user/exceptions.dart';
+
 class InputConverter {
   int stringToUnsignedInteger(String str) {
     try {
@@ -5,8 +7,7 @@ class InputConverter {
       if (integer < 0) throw const FormatException();
       return integer;
     } on FormatException {
-      throw Exception();
-      // throw const InvalidAgeException();
+      throw const InvalidAgeException();
     }
   }
 
@@ -16,8 +17,7 @@ class InputConverter {
       if (doubleValue < 0) throw const FormatException();
       return doubleValue;
     } on FormatException {
-      throw Exception();
-      // throw const InvalidWeightException();
+      throw const InvalidWeightException();
     }
   }
 

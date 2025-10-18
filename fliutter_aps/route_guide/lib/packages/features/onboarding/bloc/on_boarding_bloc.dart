@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:route_guide/packages/core/utils/utils.dart';
 import 'package:route_guide/packages/data/account/app/save_user.dart';
 import 'package:route_guide/packages/data/account/domain/models/user_model.dart';
 import 'package:route_guide/packages/data/account/domain/user/exceptions.dart';
+import 'package:route_guide/packages/features/core/utility/input_converter.dart';
 
 part 'on_boarding_event.dart';
 part 'on_boarding_state.dart';

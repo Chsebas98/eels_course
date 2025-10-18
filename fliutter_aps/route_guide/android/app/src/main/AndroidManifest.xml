@@ -2,6 +2,7 @@
  <!--
     Internet permissions do not affect the `permission_handler` plugin, but are required if your app needs access to
     the internet.
+    AIzaSyDr9pxI4hVai_BOExTzFKNNwaqnSDaXaK0
     -->
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -13,6 +14,10 @@
         android:label="route_guide"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+  
+  
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyDr9pxI4hVai_BOExTzFKNNwaqnSDaXaK0"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

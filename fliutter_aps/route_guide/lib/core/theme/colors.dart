@@ -4,9 +4,13 @@ class AppColors {
   AppColors._();
   static Color get primary => const Color(0xFF5D63D1);
 
+  static Color get grey => const Color(0xFF808080);
+
   static Color get lightGrey => const Color(0xFFF3F7FF);
 
   static Color get white => const Color(0xFFFFFFFF);
 
   static Color get red => const Color(0xFFC70036);
+
+  static Color get blue => const Color(0xFF7DB1DB);
 }
